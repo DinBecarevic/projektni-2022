@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './common/common.module';
+import { PostModule } from './post/post.module';
 
 
 @Module({
@@ -21,7 +22,8 @@ import { CommonModule } from './common/common.module';
       synchronize: true,
     }),
     AuthModule,
-    CommonModule,],
+    CommonModule,
+    PostModule,],
   controllers: [AppController],
   providers: [AppService],
 })

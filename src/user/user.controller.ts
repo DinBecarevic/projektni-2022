@@ -1,10 +1,11 @@
-import {BadRequestException, Body, Controller, Delete, Get, Param, Post, Put, Req} from '@nestjs/common';
+import {BadRequestException, Body, Controller, Delete, Get, Param, Post, Put, Req, UseGuards} from '@nestjs/common';
 import {RegisterDto} from "./register.dto";
 import {UserService} from "./user.service";
 import {UserUpdateDto} from "./user-update.dto";
 import * as bcrypt from 'bcrypt';
 import {Request} from 'express';
 import {JwtService} from "@nestjs/jwt";
+import {AuthGuard} from "../auth/auth.guard";
 
 @Controller('user')
 export class UserController {
@@ -14,12 +15,11 @@ export class UserController {
 
     }
 
+    @UseGuards(AuthGuard)
     @Get('me')
     async profile(@Req() request: Request) {
         const jwt = request.cookies['jwt'];
-
         const data = await this.jwtService.verifyAsync(jwt);
-
         return this.userService.findOne(data.id);
     }
 
@@ -40,6 +40,11 @@ export class UserController {
     @Get('all')
     all() {
         return this.userService.all();
+    }
+
+    @Post('post')
+    post() {
+
     }
 
     @Get(':id')
