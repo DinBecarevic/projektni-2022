@@ -7,7 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser());
-  //dovolim da frontend posilja v backend
+  //dovolim da frontend posilja v backend...
   app.enableCors({
     origin: 'http://localhost:3001',
     credentials: true
