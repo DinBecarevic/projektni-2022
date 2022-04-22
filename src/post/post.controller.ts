@@ -67,7 +67,7 @@ export class PostController {
         const user = await this.jwtService.verifyAsync(jwt);
 
         const post = await this.postService.findOne(id);
-        //preverim ce je lastnik
+        //preverim ce je lastnik.
         if (post.user.id != user.id) {
             throw new UnauthorizedException('Nisi lastnik');
         }
