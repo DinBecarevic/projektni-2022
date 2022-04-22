@@ -46,17 +46,17 @@ export class PostController {
         return this.postService.all();
     }
 
-    @Get('id')
+    @Get(':id')
     getOne(@Param('id') id: number) {
         return this.postService.findOne(id);
     }
 
-    @Delete('id')
+    @Delete(':id')
     delete(@Param('id') id: number) {
         return this.postService.delete(id);
     }
 
-    @Put('id')
+    @Put(':id')
     async update(
         @Param('id') id: number,
         @Body() data: CreatePostDto,
